@@ -149,6 +149,14 @@
 
 #pragma mark - Setters
 
+- (void)setSegmentAtIndex:(NSUInteger)index enabled:(BOOL)enabled
+{
+    if (index >= self.segments.count) return;
+    UIButton *button = self.segments[index];
+    [button setEnabled:enabled];
+    [button setUserInteractionEnabled:enabled];
+}
+
 -(void)updateSegmentsFormat
 {
     //Setting border color

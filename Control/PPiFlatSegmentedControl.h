@@ -31,9 +31,10 @@ typedef void(^selectionBlock)(NSUInteger segmentIndex);
   andSelectionBlock:(selectionBlock)block
      iconSeparation:(CGFloat)separation;
 - (void)setItems:(NSArray*)items;
--(void)setSelected:(BOOL)selected segmentAtIndex:(NSUInteger)segment;
--(BOOL)isSelectedSegmentAtIndex:(NSUInteger)index;
--(void)setTitle:(id)title forSegmentAtIndex:(NSUInteger)index;
--(void)setSelectedTextAttributes:(NSDictionary*)attributes;
+- (void)setSelected:(BOOL)selected segmentAtIndex:(NSUInteger)segment;
+- (BOOL)isSelectedSegmentAtIndex:(NSUInteger)index;
+- (void)setTitle:(id)title forSegmentAtIndex:(NSUInteger)index;
+- (void)setSelectedTextAttributes:(NSDictionary*)attributes;
+- (void)setSegmentAtIndex:(NSUInteger)index enabled:(BOOL)enabled;
 
 @end
