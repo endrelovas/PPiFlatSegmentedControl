@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'PPiFlatSegmentedControl'
-  s.version = '1.3.9'
+  s.version = '1.4.0'
   s.platform = :ios, '6.0'
   s.license = 'MIT'
   s.summary = 'Flat UISegmentedControl for flat designs.'
