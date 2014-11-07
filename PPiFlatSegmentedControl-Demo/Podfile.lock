@@ -6,11 +6,11 @@ PODS:
   - UIView+AutoLayout (2.0.1)
 
 DEPENDENCIES:
-  - PPiAwesomeButton (~> 1.5)
+  - PPiAwesomeButton
 
 SPEC CHECKSUMS:
   FontAwesome+iOS: 816c20304edef4ca92835de669577005cbaaf261
   PPiAwesomeButton: 8df6264bd9310e37f294d9fb3a6fb015273d9659
   UIView+AutoLayout: d876c583c3dec28b5c3916175ea4b6ad70a8be34
 
-COCOAPODS: 0.34.2
+COCOAPODS: 0.34.4

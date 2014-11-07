@@ -73,6 +73,25 @@
                                        NSForegroundColorAttributeName:[UIColor whiteColor]};
     [self.view addSubview:segmented3];
     [segmented3 setItems:items2];
+    
+    
+    PPiFlatSegmentedControl *segmentControl = [[PPiFlatSegmentedControl alloc] initWithFrame:CGRectMake(20, 200, 250, 30)
+                                                              items:@[[[PPiFlatSegmentItem alloc] initWithTitle:NSLocalizedString(@"Friends", nil) andIcon:nil], [[PPiFlatSegmentItem alloc] initWithTitle:NSLocalizedString(@"Everyone", nil) andIcon:nil]]
+                                                       iconPosition:IconPositionRight andSelectionBlock:^(NSUInteger segmentIndex) {
+                                                           // code here
+                                                       }
+                                                     iconSeparation:0];
+    segmentControl.layer.cornerRadius = 0;
+    segmentControl.color=[UIColor colorWithRed:235.0f/255.0 green:179.0f/255.0 blue:125.0f/255.0 alpha:1];
+    segmentControl.borderWidth=.5;
+    segmentControl.borderColor=[UIColor whiteColor];
+    segmentControl.selectedColor=[UIColor colorWithRed:228.0f/255.0 green:153.0f/255.0 blue:81.0f/255.0 alpha:1];
+    segmentControl.textAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
+                                    NSForegroundColorAttributeName:[UIColor whiteColor]};
+    segmentControl.selectedTextAttributes=@{NSFontAttributeName:[UIFont systemFontOfSize:16],
+                                            NSForegroundColorAttributeName:[UIColor whiteColor]};
+    [segmentControl setSegmentAtIndex:1 enabled:NO];
+    [self.view addSubview:segmentControl];
 }
 
 - (void)didReceiveMemoryWarning
