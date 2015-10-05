@@ -16,6 +16,6 @@ Pod::Spec.new do |s|
   s.source_files = 'Control/*.{h,m}'
   s.framework = 'QuartzCore'
   s.public_header_files = 'Control/*.h'
-  s.dependency = 'PPiAwesomeButton'
-  s.dependency = { 'FontAwesome+iOS' :git => 'https://github.com/alexdrone/ios-fontawesome' }
+  s.dependency 'PPiAwesomeButton'
+  s.dependency 'FontAwesome+iOS' :git => 'https://github.com/alexdrone/ios-fontawesome'
 end
