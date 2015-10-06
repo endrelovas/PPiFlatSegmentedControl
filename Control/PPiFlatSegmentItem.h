@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIAwesomeButton.h"
 
 @interface PPiFlatSegmentItem : NSObject
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSObject *icon;
+@property (nonatomic, assign) IconPosition iconPosition;
 
-- (id)initWithTitle:(NSString*)title andIcon:(NSObject*)icon;
+- (id)initWithTitle:(NSString*)title andIcon:(NSObject*)icon withIconPosition:(IconPosition) position;
 
 @end

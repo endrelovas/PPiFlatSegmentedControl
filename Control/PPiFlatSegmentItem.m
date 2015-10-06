@@ -10,12 +10,13 @@
 
 @implementation PPiFlatSegmentItem
 
-- (id)initWithTitle:(NSString*)title andIcon:(NSObject*)icon
+- (id)initWithTitle:(NSString*)title andIcon:(NSObject*)icon withIconPosition:(IconPosition) position
 {
     self = [super init];
     if (self) {
         self.title = title;
         self.icon = icon;
+        self.iconPosition = position;
     }
     return self;
 }

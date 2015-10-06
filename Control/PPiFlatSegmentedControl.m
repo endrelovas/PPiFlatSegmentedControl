@@ -22,7 +22,6 @@
 
 - (id)initWithFrame:(CGRect)frame
               items:(NSArray*)items
-       iconPosition:(IconPosition)position
   andSelectionBlock:(selectionBlock)block
      iconSeparation:(CGFloat)separation
 {
@@ -33,10 +32,7 @@
         
         //Icon separation
         self.iconSeparation = separation;
-        
-        //Icon position
-        self.iconPosition = position;
-        
+                
         //Adding items
         [self addItems:items withFrame:frame];
         
@@ -74,10 +70,10 @@
         
         UIAwesomeButton  *button;
         if([icon isKindOfClass:[UIImage class]]) {
-            button = [[UIAwesomeButton alloc] initWithFrame:CGRectMake(buttonWith*i, 0, buttonWith, frame.size.height) text:text iconImage:(UIImage *)icon attributes:@{} andIconPosition:self.iconPosition];
+            button = [[UIAwesomeButton alloc] initWithFrame:CGRectMake(buttonWith*i, 0, buttonWith, frame.size.height) text:text iconImage:(UIImage *)icon attributes:@{} andIconPosition:item.iconPosition];
         }
         else {
-            button = [[UIAwesomeButton alloc] initWithFrame:CGRectMake(buttonWith*i, 0, buttonWith, frame.size.height) text:text icon:(NSString *)icon attributes:@{} andIconPosition:self.iconPosition];
+            button = [[UIAwesomeButton alloc] initWithFrame:CGRectMake(buttonWith*i, 0, buttonWith, frame.size.height) text:text icon:(NSString *)icon attributes:@{} andIconPosition:item.iconPosition];
         }
         
         UIAwesomeButton __weak *wbutton = button;
@@ -95,13 +91,19 @@
             [self addSubview:separatorView];
             [self.separators addObject:separatorView];
         }
-        
         i++;
     }
     
     // Bringins separators to the front
     for (UIView* separator in self.separators) {
         [self bringSubviewToFront:separator];
+    }
+}
+
+- (void) setForceTapGestureRecogniser:(bool)ForceTapGestureRecogniser {
+    _ForceTapGestureRecogniser = ForceTapGestureRecogniser;
+    for(UIAwesomeButton *item in self.segments) {
+        [item setForceTapGestureRecogniser:ForceTapGestureRecogniser];
     }
 }
 
@@ -149,6 +151,11 @@
 
 #pragma mark - Setters
 
+- (void)setIconPosition:(IconPosition)iconPosition forSegment:(NSUInteger)index {
+    UIAwesomeButton *segment = [self.segments objectAtIndex:index];
+    [segment setIconPosition:iconPosition];
+}
+
 - (void)setSegmentAtIndex:(NSUInteger)index enabled:(BOOL)enabled
 {
     if (index >= self.segments.count) return;
@@ -177,10 +184,6 @@
     //Modifying buttons with current State
     for (UIAwesomeButton *segment in self.segments)
     {
-        //Setting icon Position
-        if (self.iconPosition)
-            [segment setIconPosition:self.iconPosition];
-        
         //Set text aligment
         [segment setTextAlignment:NSTextAlignmentCenter];
         
@@ -230,7 +233,8 @@
 -(void)setIconPosition:(IconPosition)iconPosition
 {
     _iconPosition=iconPosition;
-    [self updateSegmentsFormat];
+    for (UIAwesomeButton *segment in self.segments)
+        [segment setIconPosition:iconPosition];
 }
 
 -(void)setTitle:(id)title forSegmentAtIndex:(NSUInteger)index

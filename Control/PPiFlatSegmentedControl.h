@@ -24,17 +24,17 @@ typedef void(^selectionBlock)(NSUInteger segmentIndex);
 @property (nonatomic,strong) NSDictionary *selectedTextAttributes;
 @property (nonatomic)  IconPosition iconPosition;
 @property (nonatomic,readonly) NSUInteger numberOfSegments;
+@property (nonatomic, assign) bool ForceTapGestureRecogniser;
 
-- (id)initWithFrame:(CGRect)frame
-              items:(NSArray*)items
-       iconPosition:(IconPosition)position
-  andSelectionBlock:(selectionBlock)block
-     iconSeparation:(CGFloat)separation;
+
+- (id)initWithFrame:(CGRect)frame items:(NSArray*)items andSelectionBlock:(selectionBlock)block iconSeparation:(CGFloat)separation;
+
 - (void)setItems:(NSArray*)items;
 - (void)setSelected:(BOOL)selected segmentAtIndex:(NSUInteger)segment;
 - (BOOL)isSelectedSegmentAtIndex:(NSUInteger)index;
 - (void)setTitle:(id)title forSegmentAtIndex:(NSUInteger)index;
 - (void)setSelectedTextAttributes:(NSDictionary*)attributes;
 - (void)setSegmentAtIndex:(NSUInteger)index enabled:(BOOL)enabled;
+- (void)setIconPosition:(IconPosition)iconPosition forSegment:(NSUInteger)index;
 
 @end
