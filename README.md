@@ -5,6 +5,11 @@ For better appearance you can add Font Awesome library to your project and use t
 
 [Font Awesome Icons](http://fortawesome.github.io/Font-Awesome/icons/)
 
+## Custom fork
+Support UITableViewControl embeds (use: setForceUITapGestureRecogniser)
+Support for different icon location by segment
+
+
 ## Installation
 Installation can be made easilly thanks to Pod in this repository. The only thing you have to do is add PPiFlatSegmentedControl in your Podfile
 
