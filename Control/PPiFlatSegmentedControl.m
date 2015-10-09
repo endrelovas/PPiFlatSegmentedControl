@@ -8,7 +8,7 @@
 
 #import "PPiFlatSegmentedControl.h"
 #import "UIAwesomeButton.h"
-#define segment_corner 3.0
+#define segment_corner 5.0
 
 @interface PPiFlatSegmentedControl()
 @property (nonatomic,strong) NSMutableArray *segments;
@@ -16,6 +16,7 @@
 @property (nonatomic,strong) NSMutableArray *separators;
 @property (nonatomic,copy) selectionBlock selBlock;
 @property (nonatomic) CGFloat iconSeparation;
+@property (nonatomic,strong) UIView* viewRounded;
 @end
 
 @implementation PPiFlatSegmentedControl
@@ -51,6 +52,11 @@
 
 - (void)addItems:(NSArray*)items withFrame:(CGRect)frame
 {
+    if (_viewRounded == nil)
+    {
+        _viewRounded = [[UIView alloc] initWithFrame:frame];
+        [self addSubview:_viewRounded];
+    }
     // Removing segments and separators
     for (UIView *separator in self.separators) {
         [separator removeFromSuperview];
@@ -167,18 +173,26 @@
 -(void)updateSegmentsFormat
 {
     //Setting border color
-    if (self.borderColor) {
+/*    if (self.borderColor) {
         self.layer.borderWidth=self.borderWidth;
         self.layer.borderColor=self.borderColor.CGColor;
     }
     else {
         self.layer.borderWidth=0;
-    }
+    }*/
     
     //Updating segments color
+    [_viewRounded setBackgroundColor:[UIColor clearColor]];
+    [_viewRounded.layer setCornerRadius:segment_corner];
+    [_viewRounded.layer setBorderColor:self.borderColor.CGColor];
+    [_viewRounded.layer setBorderWidth:self.borderWidth];
+
     for (UIView *separator in self.separators) {
-        separator.backgroundColor=self.borderColor;
-        separator.frame=CGRectMake(separator.frame.origin.x, separator.frame.origin.y,self.borderWidth , separator.frame.size.height);
+        if (self.separatorColor)
+            separator.backgroundColor = self.separatorColor;
+        else
+            separator.backgroundColor=self.borderColor;
+        separator.frame=CGRectMake(separator.frame.origin.x , separator.frame.origin.y,self.borderWidth , separator.frame.size.height);
     }
     
     //Modifying buttons with current State
@@ -193,13 +207,18 @@
         //Setting format depending on if it's selected or not
         if([self.segments indexOfObject:segment]==self.currentSelected){
             //Selected-one
-            if(self.selectedColor)[segment setBackgroundColor:self.selectedColor forUIControlState:UIControlStateNormal];
+            if(self.selectedColor){
+                [segment setBackgroundColor:self.selectedColor forUIControlState:UIControlStateNormal];
+                
+            }
             if(self.selectedTextAttributes)
                 [segment setAttributes:self.selectedTextAttributes forUIControlState:UIControlStateNormal];
         }
         else{
             //Non selected
-            if(self.color)[segment setBackgroundColor:self.color forUIControlState:UIControlStateNormal];
+            if(self.color)
+                [segment setBackgroundColor:self.color forUIControlState:UIControlStateNormal];
+            
             if(self.textAttributes)
                 [segment setAttributes:self.textAttributes forUIControlState:UIControlStateNormal];
         }

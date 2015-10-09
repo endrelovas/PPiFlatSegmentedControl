@@ -19,12 +19,15 @@ typedef void(^selectionBlock)(NSUInteger segmentIndex);
 @property (nonatomic,strong) UIColor *color;
 @property (nonatomic,strong) UIFont *textFont;
 @property (nonatomic,strong) UIColor *borderColor;
+@property (nonatomic,strong) UIColor *separatorColor;
+@property (nonatomic, strong) UIColor *DeSelectedBorderColor;
 @property (nonatomic) CGFloat borderWidth;
 @property (nonatomic,strong) NSDictionary *textAttributes;
 @property (nonatomic,strong) NSDictionary *selectedTextAttributes;
 @property (nonatomic)  IconPosition iconPosition;
 @property (nonatomic,readonly) NSUInteger numberOfSegments;
 @property (nonatomic, assign) bool ForceTapGestureRecogniser;
+
 
 
 - (id)initWithFrame:(CGRect)frame items:(NSArray*)items andSelectionBlock:(selectionBlock)block iconSeparation:(CGFloat)separation;
